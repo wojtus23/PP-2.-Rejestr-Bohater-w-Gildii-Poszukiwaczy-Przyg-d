@@ -17,11 +17,11 @@ Bohater utworzBohatera(){
 
     int r, k;
     printf("Wybierz rase: \n0-Czlowiek \n1-Elf \n2-Krasnolud\n3-Ork\n4-TIEFLING\n");
-    sanf("%d", &r);
+    scanf("%d", &r);
     b.rasa = r;
 
-    printf("Wybierz klase: \n0-WOJOWNIK \n1-MAG \n2-KAPLAN\n3-KAPLAN\n4-LOWCA\n5-DRUID\n");
-    sanf("%d", &k);
+    printf("Wybierz klase: \n0-WOJOWNIK \n1-MAG \n2-KAPLAN\n3-KAPLAN\n4-LOTRZYK\n5-LOWCA\n6-DRUID\n");
+    scanf("%d", &k);
     b.klasa = k;
 
     printf("Podaj poziom (1-100): ");

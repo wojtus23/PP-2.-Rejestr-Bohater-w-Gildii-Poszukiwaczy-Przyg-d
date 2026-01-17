@@ -38,7 +38,11 @@ typedef struct{
 } Bohater;
 
 Bohater utorzBohatera();
-void wypiszBohatera();
+void wypiszBohatera(Bohater b);
+
+const char* rasaNaString(Rasa r);
+const char* klasaNaString(Klasa k);
+const char* statusNaString(Status s);
 
 
 #endif

@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "lista.h"
+#include "bohater.h"
 
 
 void wyswietlMenu(){
@@ -15,13 +16,14 @@ int main(int argc, char* argv[]){
         return 1;
     }
 
+
     char* nazwaPliku = argv[1];
     printf("Uruchamianie systemu Baza danych: %s\n", nazwaPliku);
 
     Listabohaterow gildia;
     inicjalizujListe(&gildia);
 
-    //wczytywanie pliku tu bedzie to zrobie pozniej
+    wczytajZPliku(&gildia, nazwaPliku);
 
     int wybor = -1;
     while(wybor !=0){
@@ -41,6 +43,7 @@ int main(int argc, char* argv[]){
                 wyswietlWszystkich(&gildia);
                 break;
             case 0:
+                zapiszDoPliku(&gildia, nazwaPliku);
                 break;
             default:
                 printf("Nieznana opcja, sprobuj ponownie.\n");

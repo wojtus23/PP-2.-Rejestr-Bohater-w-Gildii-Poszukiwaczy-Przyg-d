@@ -57,3 +57,39 @@ void zwolnijListe(Listabohaterow* lista){
     lista->rozmiar = 0;
     printf("pamiec listy zwolniona\n");
 }
+
+void zapiszDoPliku(const Listabohaterow* lista, const char* nazwaPliku){
+    FILE* plik = fopen(nazwaPliku, "w");
+
+    if(plik==NULL){
+        return;
+        }
+    Node* current = lista->head;
+    while(current != NULL)
+    {
+        Bohater b = current->dane;
+        fprintf(plik,"%s;%s;%s;%d;%d;%s",b.imie,b.rasa,b.klasa, b.poziom, b.reputacja, b.status);
+
+        current = current -> next;
+    }
+    fclose(plik);
+    printf("Zapisano");
+}
+
+void wczytajZPliku(Listabohaterow* lista, const char* nazwaPlik){
+    FILE* plik = fopen(nazwaPlik, "r");
+
+    if(plik==NULL){
+        return;
+    }
+    
+    Bohater b;
+    
+    while (scanf(plik, "%100[^;];%d;%d;%d;%d;%d", b.imie,&b.rasa,&b.klasa, &b.poziom, &b.reputacja, &b.status)==6){
+        dodajBohatera(lista,b);
+    }
+    fclose(plik);
+    printf("Wczystano");
+
+    
+}

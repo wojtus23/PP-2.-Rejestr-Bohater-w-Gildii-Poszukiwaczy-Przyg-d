@@ -20,7 +20,8 @@ void dodajBohatera(Listabohaterow* lista, Bohater b);
 void wyswietlWszystkich(const Listabohaterow* lista);
 void zwolnijListe(Listabohaterow* lista);
 
-
+void zapiszDoPliku(const Listabohaterow* lista, const char* nazwaPliku);
+void wczytajZPliku(Listabohaterow* lista, const char* nazwaPliku);
 
 
 

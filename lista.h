@@ -23,6 +23,7 @@ void zwolnijListe(Listabohaterow* lista);
 void zapiszDoPliku(const Listabohaterow* lista, const char* nazwaPliku);
 void wczytajZPliku(Listabohaterow* lista, const char* nazwaPliku);
 
-
+Node* znajdzBohatera(const Listabohaterow* lista, const char* imie);
+int usunBohatera(Listabohaterow* lista, const char* imie);
 
 #endif

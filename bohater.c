@@ -20,7 +20,7 @@ Bohater utworzBohatera(){
     scanf("%d", &r);
     b.rasa = r;
 
-    printf("Wybierz klase: \n0-WOJOWNIK \n1-MAG \n2-KAPLAN\n3-KAPLAN\n4-LOTRZYK\n5-LOWCA\n6-DRUID\n");
+    printf("Wybierz klase: \n0-Wojownik\n1-Mag\n2-Kaplan\n3-Lotrzyk\n4-Lowca\n5-Druid\n");
     scanf("%d", &k);
     b.klasa = k;
 

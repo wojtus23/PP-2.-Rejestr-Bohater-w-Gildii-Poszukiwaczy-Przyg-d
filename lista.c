@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "lista.h"
 
 void inicjalizujListe(Listabohaterow* lista){
@@ -68,7 +69,7 @@ void zapiszDoPliku(const Listabohaterow* lista, const char* nazwaPliku){
     while(current != NULL)
     {
         Bohater b = current->dane;
-        fprintf(plik,"%s;%s;%s;%d;%d;%s",b.imie,b.rasa,b.klasa, b.poziom, b.reputacja, b.status);
+        fprintf(plik,"%s;%d;%d;%d;%d;%d\n", b.imie, b.rasa, b.klasa, b.poziom, b.reputacja, b.status);
 
         current = current -> next;
     }
@@ -84,9 +85,13 @@ void wczytajZPliku(Listabohaterow* lista, const char* nazwaPlik){
     }
     
     Bohater b;
+    int r, k, s;
     
-    while (scanf(plik, "%100[^;];%d;%d;%d;%d;%d", b.imie,&b.rasa,&b.klasa, &b.poziom, &b.reputacja, &b.status)==6){
-        dodajBohatera(lista,b);
+    while (fscanf(plik, "%100[^;];%d;%d;%d;%d;%d\n", b.imie, &r, &k, &b.poziom, &b.reputacja, &s) == 6){
+        b.rasa = r;
+        b.klasa = k;
+        b.status = s;
+        dodajBohatera(lista, b);
     }
     fclose(plik);
     printf("Wczystano");

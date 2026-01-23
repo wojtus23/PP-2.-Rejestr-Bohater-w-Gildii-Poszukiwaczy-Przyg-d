@@ -1,15 +1,24 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "lista.h"
 #include "bohater.h"
 
 
 void wyswietlMenu(){
-    printf("Gilida poszukiwaczy przygod \n1. Dodaj nowego bohatera\n2. Wyswietl rejestr \n 0. Wyjscie\n");
-    printf("3. Zanjdz i edytuj bohatera \n");
-    printf("4. Usun bohatera\n");
-    printf("Wybor: ");
+    printf("\n<><><><><><><><><><><><><><><><><><>\n");
+    printf("     GILDIA POSZUKIWACZY PRZYGOD      \n");
+    printf("<><><><><><><><><><><><><><><><><><>\n");
+    printf("1. Dodaj nowego bohatera\n");
+    printf("2. Wyswietl rejestr\n");
+    printf("3. Znajdz bohatera\n"); 
+    printf("4. Edytuj bohatera\n");            
+    printf("5. Usun bohatera\n");              
+    printf("6. Sortuj liste\n");               
+    printf("7. Filtruj liste\n");              
+    printf("0. Wyjscie\n");
 }
+
 
 int main(int argc, char* argv[]){
     if(argc<2){
@@ -31,24 +40,45 @@ int main(int argc, char* argv[]){
     while(wybor !=0){
         wyswietlMenu();
 
-        if (scnaf("%d", &wybor) != 1){
+        if (scanf("%d", &wybor) != 1){
             wyczyscBufor();
             wybor = -1;
+            printf("Blad: To nie jest liczba.\n");
             continue;
         }
+
+        wyczyscBufor();
+
         switch(wybor){
-            case 1:
+            case 1: {
                 Bohater b = utworzBohatera();
-                dodajBohatera(&gilida, b);
+                dodajBohatera(&gildia, b);
                 break;
-            case 2:
+
+            }
+            case 2: {
+
+            }
                 wyswietlWszystkich(&gildia);
                 break;
-            case 3:
+            case 3:{
+                char szukane[100];
+                printf("Podaj imie bohatera: ");
+                fgets(szukane, 100, stdin);
+                szukane[strcspn(szukane, "\n")] = 0;
+
+                Node* wynik = znajdzBohatera(&gildia, szukane);
+                if (wynik != NULL) {
+                    printf("Znaleziono!\n");
+                    wypiszBohatera(wynik->dane);
+                } else {
+                    printf("Nie znaleziono bohatera.\n");
+                }
+                break;
+            }   
+            case 4: {
                 char szukane[100];
                 printf("Podaj imie bohatera do edycji: ");
-                int c; 
-                while ((c = getchar()) != '\n');
                 fgets(szukane, 100, stdin);
                 szukane[strcspn(szukane, "\n")] = 0;
 
@@ -80,16 +110,17 @@ int main(int argc, char* argv[]){
                     printf("Nie znaleziono takiego bohatera.\n");
                 }
                 break;
-            case 4:
+            }
+            case 5: {
                 char doUsuniecia[100];
                 printf("Podaj imie bohatera do usuniecia: ");
-                int c; 
-                while ((c = getchar()) != '\n');
                 fgets(doUsuniecia, 100, stdin);
-                doUsuniecia[strcspn(doUsuniecia, "\n")] = 1;
+                doUsuniecia[strcspn(doUsuniecia, "\n")] = 0;
 
                 usunBohatera(&gildia, doUsuniecia);
                 break;
+
+            }
             case 0:
                 zapiszDoPliku(&gildia, nazwaPliku);
                 break;

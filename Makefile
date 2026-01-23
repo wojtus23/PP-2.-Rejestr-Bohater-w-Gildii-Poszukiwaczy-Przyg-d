@@ -16,4 +16,4 @@ bohater.o: bohater.c bohater.h
 	$(CC) $(CFLAGS) -c bohater.c
 
 clean:
-	rm -f *.o gildia
+	del *.o gildia.exe

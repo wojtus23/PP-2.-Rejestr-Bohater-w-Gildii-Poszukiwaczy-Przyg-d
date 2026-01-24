@@ -3,12 +3,12 @@
 #include <string.h>
 #include "lista.h"
 #include "bohater.h"
-
+#include "pomocnicze.h"
 
 void wyswietlMenu(){
-    printf("\n<><><><><><><><><><><><><><><><><><>\n");
+    oddzielacz();
     printf("     GILDIA POSZUKIWACZY PRZYGOD      \n");
-    printf("<><><><><><><><><><><><><><><><><><>\n");
+    oddzielacz();
     printf("1. Dodaj nowego bohatera\n");
     printf("2. Wyswietl rejestr\n");
     printf("3. Znajdz bohatera\n"); 
@@ -40,14 +40,7 @@ int main(int argc, char* argv[]){
     while(wybor !=0){
         wyswietlMenu();
 
-        if (scanf("%d", &wybor) != 1){
-            wyczyscBufor();
-            wybor = -1;
-            printf("Blad: To nie jest liczba.\n");
-            continue;
-        }
-
-        wyczyscBufor();
+        wybor = wczytajInt("Wybor: ");
 
         switch(wybor){
             case 1: {
@@ -63,9 +56,7 @@ int main(int argc, char* argv[]){
                 break;
             case 3:{
                 char szukane[100];
-                printf("Podaj imie bohatera: ");
-                fgets(szukane, 100, stdin);
-                szukane[strcspn(szukane, "\n")] = 0;
+                wczytajTekst("Podaj imie bohatera: ", szukane, 100);
 
                 Node* wynik = znajdzBohatera(&gildia, szukane);
                 if (wynik != NULL) {
@@ -78,9 +69,7 @@ int main(int argc, char* argv[]){
             }   
             case 4: {
                 char szukane[100];
-                printf("Podaj imie bohatera do edycji: ");
-                fgets(szukane, 100, stdin);
-                szukane[strcspn(szukane, "\n")] = 0;
+                wczytajTekst("Podaj imie bohatera do edycji: ", szukane, 100);
 
                 Node* wynik = znajdzBohatera(&gildia, szukane);
                 if (wynik != NULL) {
@@ -89,19 +78,14 @@ int main(int argc, char* argv[]){
                     
                     printf("\nCo chcesz zmienic?\n");
                     printf("1. Poziom\n2. Reputacje\n3. Status\nWybor: ");
-                    int opcjaEdycji;
-                    scanf("%d", &opcjaEdycji);
+                    int opcjaEdycji = wczytajIntZZakresu("Wybor: ", 1, 3);
                     
                     if (opcjaEdycji == 1) {
-                        printf("Nowy poziom: ");
-                        scanf("%d", &wynik->dane.poziom);
+                        wynik->dane.poziom = wczytajIntZZakresu("Nowy poziom (1-100): ", 1, 100);
                     } else if (opcjaEdycji == 2) {
-                        printf("Nowa reputacja (0-100): ");
-                        scanf("%d", &wynik->dane.reputacja);
+                        wynik->dane.reputacja = wczytajIntZZakresu("Nowa reputacja (0-100): ", 0, 100);
                     } else if (opcjaEdycji == 3) {
-                        printf("Nowy status (0-Aktywny, 1-Misja, 2-Ranny, 3-Zaginiony): ");
-                        int s;
-                        scanf("%d", &s);
+                        int s = wczytajIntZZakresu("Podaj status: ", 0, 3);
                         wynik->dane.status = s;
                     }
                     printf("Dane zaktualizowane.\n");
@@ -113,9 +97,8 @@ int main(int argc, char* argv[]){
             }
             case 5: {
                 char doUsuniecia[100];
-                printf("Podaj imie bohatera do usuniecia: ");
-                fgets(doUsuniecia, 100, stdin);
-                doUsuniecia[strcspn(doUsuniecia, "\n")] = 0;
+                wczytajTekst("Podaj imie bohatera do usuniecia: ", doUsuniecia, 100);
+                
 
                 usunBohatera(&gildia, doUsuniecia);
                 break;

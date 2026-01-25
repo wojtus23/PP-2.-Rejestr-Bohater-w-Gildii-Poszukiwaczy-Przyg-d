@@ -15,8 +15,8 @@ Bohater utworzBohatera(){
     int r = wczytajIntZZakresu("Wybor: ", 0, 4);
     b.rasa = r;
 
-    printf("Wybierz klase: \n0-WOJOWNIK \n1-MAG \n2-KAPLAN\n3-KAPLAN\n4-LOTRZYK\n5-LOWCA\n6-DRUID\n");
-    scanf("%d", &k);
+    printf("Wybierz klase: \n0-Wojownik\n1-Mag\n2-Kaplan\n3-Lotrzyk\n4-Lowca\n5-Druid\n");
+    int k = wczytajIntZZakresu("Wybor: ", 0, 5);
     b.klasa = k;
 
     b.poziom = wczytajIntZZakresu("Podaj poziom (1-100): ", 1, 100);

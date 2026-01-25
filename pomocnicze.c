@@ -51,4 +51,3 @@ void wczytajTekst(const char* komunikat, char* bufor, int rozmiar) {
         wyczyscBufor(); 
     }
 }
-

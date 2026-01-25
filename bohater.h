@@ -41,6 +41,7 @@ Bohater utworzBohatera();
 void wypiszBohatera(Bohater b);
 void wyczyscBufor();
 
+
 const char* rasaNaString(Rasa r);
 const char* klasaNaString(Klasa k);
 const char* statusNaString(Status s);
